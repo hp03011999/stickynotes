@@ -10,10 +10,23 @@ let right = document.querySelector("#wrapper .right")
 
 
 btn.addEventListener("click", hello)
-function hello(){
-    
 
- 
+
+let update;
+
+function hello(){
+
+    if(btn.innerHTML === 'edit'){
+
+        update.target.parentElement.children[0].innerHTML = textarea.value
+        btn.innerHTML = "add note"
+
+        textarea.value = ""
+    }
+
+    else{
+
+   
 
     let div = document.createElement("div");
 
@@ -34,6 +47,9 @@ function hello(){
    
     span.innerHTML = "&times;"
     
+    // if(spanText ==textarea.value){
+
+
     spanText.innerText=textarea.value;
 
     div.style.backgroundColor = input1.value;
@@ -45,7 +61,9 @@ function hello(){
     div.appendChild(spanEdit)
     right.appendChild(div)
     div.appendChild(span)
-
+    // }
+    
+    
     span.addEventListener("click", coll)
 
 
@@ -54,8 +72,10 @@ function hello(){
 
     spanText.addEventListener("blur", focus)
 
-    
+    }
+  
 }
+
 
 function coll(event){
 
@@ -65,9 +85,18 @@ function coll(event){
 function edit(event){
 
     event.target.parentElement.children[0].contentEditable = true;
+    if(event.target.innerHTML === "E"){
+
+        textarea.value = event.target.parentElement.children[0].innerHTML;
+        textarea.focus();
+        btn.innerHTML = "edit"
+
+        update = event;
+    }
 }
 
 function focus(event){
 
-    event.target.contentEditable = false;
+    event.target.contentEditable = true;
 }
+
